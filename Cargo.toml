@@ -3,5 +3,6 @@ name = "mups"
 version = "0.1.0"
 authors = ["Joonas Sarajärvi <muep@iki.fi>"]
 
-[dependencies]
-clap = "2"
+[dependencies.clap]
+default-features = false
+version = "2"
