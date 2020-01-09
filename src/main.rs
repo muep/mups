@@ -120,9 +120,9 @@ fn main() {
                         .takes_value(true),
                 ),
         )
-        .subcommand(SubCommand::with_name("prettify").about(
-            "Reprint an argument list for easier viewing",
-        ))
+        .subcommand(
+            SubCommand::with_name("prettify").about("Reprint an argument list for easier viewing"),
+        )
         .subcommand(
             SubCommand::with_name("whatps")
                 .about("Print out args and parents of a running process")
@@ -144,7 +144,6 @@ fn main() {
     } else if let Some(ref m) = matches.subcommand_matches("whatps") {
         run_whatps(m);
     }
-
 }
 
 fn prettify(stuff_in: &str) -> String {
@@ -154,9 +153,11 @@ fn prettify(stuff_in: &str) -> String {
 }
 
 fn run_args(matches: &ArgMatches) {
-    let pid = matches.value_of("pid").unwrap().parse::<u32>().expect(
-        "PID has to be an integer",
-    );
+    let pid = matches
+        .value_of("pid")
+        .unwrap()
+        .parse::<u32>()
+        .expect("PID has to be an integer");
 
     cmdline_to_stdout(pid);
 }
@@ -174,9 +175,11 @@ fn run_prettify() {
 }
 
 fn run_whatps(matches: &ArgMatches) {
-    let mut pid = matches.value_of("pid").unwrap().parse::<u32>().expect(
-        "PID has to be an integer",
-    );
+    let mut pid = matches
+        .value_of("pid")
+        .unwrap()
+        .parse::<u32>()
+        .expect("PID has to be an integer");
 
     let mut pids = vec![pid];
 
